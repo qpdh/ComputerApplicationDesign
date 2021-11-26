@@ -13,8 +13,6 @@ ComputerApplicationDesign
 
 # 허 민
 
----
-
 ## **FrontEnd - 동작이 이상한 부분**
 
 1. **Exercise** → db 테이블 내 exercise가 있는데도 선택이 안됨,
@@ -22,16 +20,12 @@ ComputerApplicationDesign
 
 # 송경진
 
----
-
 ## **FrontEnd - 추가부분**
 
 1. 사용자 입력으로 음식 추가 페이지
 2. 사용자 입력으로 운동 추가 페이지
 
 # 김기현
-
----
 
 ## 모니터링 툴
 
@@ -48,8 +42,6 @@ ComputerApplicationDesign
 -> 시나리오 3으로도 사용할 수도
 
 # 김동현
-
----
 
 서버(컨테이너) 브로커 역할
 
@@ -73,14 +65,10 @@ Mosquitto → MQTT(어플)이 서버 구독 → 메시지 수령
 
 # 최혜민
 
----
-
 ## 설계안 초안 구성 ppt (10페이지 이내) → 12/3(목)까지
 
 1. 팀소개
 2. 전체 구조도(사용자 영역+운영 영역) + 설명
-
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/9060b0e8-9f56-49dd-8e19-ee9686b402cb/Untitled.png)
 
 1. 사용자 영역 구조도 + 설명
 2. 운영 영역 구조도 + 설명
