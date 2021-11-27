@@ -1,0 +1,22 @@
+zuul:
+  ignoredServices: '*'
+  routes:
+    auth:
+      path: /auth/**
+      serviceId: auth
+      sensitiveHeaders: Cookie, Set-Cookie
+    exercise:
+      path: /exercise/**
+      serviceId: exercise
+      sensitiveHeaders: Cookie, Set-Cookie
+    diet:
+      path: /diet/**
+      serviceId: diet
+      sensitiveHeaders: Cookie, Set-Cookie
+    statistics:
+      path: /statistics/**
+      serviceId: statistics
+      sensitiveHeaders: Cookie, Set-Cookie
+      
+jwt:
+  secretKey: ${JWT_SECRET_KEY:geunyoung_jwt_secret}

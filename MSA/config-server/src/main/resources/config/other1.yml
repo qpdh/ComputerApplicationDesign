@@ -1,0 +1,2 @@
+jwt:
+  secretKey: ${JWT_SECRET_KEY:geunyoung_jwt_secret}
