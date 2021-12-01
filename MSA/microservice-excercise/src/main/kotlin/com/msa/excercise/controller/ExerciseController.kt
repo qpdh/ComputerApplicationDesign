@@ -1,5 +1,6 @@
 package com.msa.excercise.controller
 
+import com.msa.excercise.application.CreateExerciseService
 import com.msa.excercise.application.CreateHistoryService
 import com.msa.excercise.application.GetExerciseService
 import com.msa.excercise.application.GetHistoryService
@@ -17,14 +18,29 @@ import javax.validation.Valid
 class ExerciseController(
         @Autowired private val getExerciseService: GetExerciseService,
         @Autowired private val getHistoryService: GetHistoryService,
-        @Autowired private val createHistoryService: CreateHistoryService
+        @Autowired private val createHistoryService: CreateHistoryService,
+        @Autowired private val createExerciseService: CreateExerciseService
 ) {
+
     @GetMapping("/")
     fun getExercises(
             @RequestParam("part") part: ExercisePart,
             @RequestHeader("username") username: String
         ): ResponseEntity<List<Exercise>> {
         val exercises = getExerciseService.getExercises(part)
+        return ResponseEntity(exercises, HttpStatus.OK)
+    }
+
+    /**
+     * 운동 생성 api
+     * @author 김기현
+     */
+    @PostMapping("/")
+    fun createExercises(
+        @RequestBody @Valid createExerciseReq: ExerciseDto.CreateExerciseReq,
+        @RequestHeader("username") username: String
+    ): ResponseEntity<Exercise> {
+        val exercises = createExerciseService.createExercise(createExerciseReq)
         return ResponseEntity(exercises, HttpStatus.OK)
     }
 
