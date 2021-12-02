@@ -6,7 +6,7 @@ services:
     container_name: mysql-db
     restart: on-failure
     environment:
-      MYSQL_ROOT_PASSWORD: "dkdltm123"
+      MYSQL_ROOT_PASSWORD: "ce19f003"
     ports:
       - 3306:3306
     networks:
@@ -19,11 +19,13 @@ services:
     restart: on-failure
     environment:
       MYSQL_CONNECTION_URI: "jdbc:mysql://mysql:3306/test_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&autoReconnection=true"
-      MYSQL_ROOT_PASSWORD: "dkdltm123"
+      MYSQL_ROOT_PASSWORD: "ce19f003"
     ports:
       - 8888:8888
     networks:
       - msa-network
+    volumes:
+
 
   registry:
     image: ce19f003/registry
@@ -32,7 +34,7 @@ services:
       - mysql
     restart: on-failure
     environment:
-      CONFIG_SERVER_URI: "http://config:8888"
+      CONFIG_SERVER_URI: https://github.com/kim1387/-spring-cloud-config
     ports:
       - 8761:8761
     networks:
@@ -46,10 +48,10 @@ services:
       - mysql
     restart: on-failure
     environment:
-      CONFIG_SERVER_URI: "http://config:8888"
+      CONFIG_SERVER_URI: https://github.com/kim1387/-spring-cloud-config
       EUREKA_SERVER_URI: "http://registry:8761/eureka"
       MYSQL_CONNECTION_URI: "jdbc:mysql://mysql:3306/test_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&autoReconnection=true"
-      MYSQL_ROOT_PASSWORD: "dkdltm123"
+      MYSQL_ROOT_PASSWORD: "ce19f003"
     ports:
       - 8080:8080
     networks:
@@ -63,11 +65,11 @@ services:
       - mysql
     restart: on-failure
     environment:
-      CONFIG_SERVER_URI: "http://config:8888"
+      CONFIG_SERVER_URI: https://github.com/kim1387/-spring-cloud-config
       EUREKA_SERVER_URI: "http://registry:8761/eureka"
       MYSQL_CONNECTION_URI: "jdbc:mysql://mysql:3306/test_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&autoReconnection=true"
-      MYSQL_ROOT_PASSWORD: "dkdltm123"
-      JWT_SECRET_KEY: "geunyoung_jwt_secret"
+      MYSQL_ROOT_PASSWORD: "ce19f003"
+      JWT_SECRET_KEY: "kimgyun_jwt_secret"
     ports:
       - 8081:8080
     networks:
@@ -81,10 +83,10 @@ services:
       - mysql
     restart: on-failure
     environment:
-      CONFIG_SERVER_URI: "http://config:8888"
+      CONFIG_SERVER_URI: https://github.com/kim1387/-spring-cloud-config
       EUREKA_SERVER_URI: "http://registry:8761/eureka"
       MYSQL_CONNECTION_URI: "jdbc:mysql://mysql:3306/test_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&autoReconnection=true"
-      MYSQL_ROOT_PASSWORD: "dkdltm123"
+      MYSQL_ROOT_PASSWORD: "ce19f003"
     ports:
       - 8082:8080
     networks:
@@ -98,10 +100,10 @@ services:
       - mysql
     restart: on-failure
     environment:
-      CONFIG_SERVER_URI: "http://config:8888"
+      CONFIG_SERVER_URI: https://github.com/kim1387/-spring-cloud-config
       EUREKA_SERVER_URI: "http://registry:8761/eureka"
       MYSQL_CONNECTION_URI: "jdbc:mysql://mysql:3306/test_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&autoReconnection=true"
-      MYSQL_ROOT_PASSWORD: "dkdltm123"
+      MYSQL_ROOT_PASSWORD: "ce19f003"
     ports:
       - 8083:8080
     networks:
@@ -115,10 +117,10 @@ services:
       - mysql
     restart: on-failure
     environment:
-      CONFIG_SERVER_URI: "http://config:8888"
+      CONFIG_SERVER_URI: https://github.com/kim1387/-spring-cloud-config
       EUREKA_SERVER_URI: "http://registry:8761/eureka"
       MYSQL_CONNECTION_URI: "jdbc:mysql://mysql:3306/test_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&autoReconnection=true"
-      MYSQL_ROOT_PASSWORD: "dkdltm123"
+      MYSQL_ROOT_PASSWORD: "ce19f003"
     ports:
       - 8084:8080
     networks:

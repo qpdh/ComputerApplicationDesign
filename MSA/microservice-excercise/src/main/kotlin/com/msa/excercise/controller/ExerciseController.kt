@@ -34,14 +34,14 @@ class ExerciseController(
     /**
      * 운동 생성 api
      * @author 김기현
+     * @since 2021-12-1
      */
     @PostMapping("/")
     fun createExercises(
-        @RequestBody @Valid createExerciseReq: ExerciseDto.CreateExerciseReq,
-        @RequestHeader("username") username: String
+        @RequestBody @Valid createExerciseReq: ExerciseDto.CreateExerciseReq
     ): ResponseEntity<Exercise> {
-        val exercises = createExerciseService.createExercise(createExerciseReq)
-        return ResponseEntity(exercises, HttpStatus.OK)
+        val exercise = createExerciseService.createExercise(createExerciseReq)
+        return ResponseEntity(exercise, HttpStatus.OK)
     }
 
     @GetMapping("/{id}")

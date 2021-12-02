@@ -13,6 +13,7 @@ class GetDietStatisticsServiceImpl(
         @Autowired private val dietServiceClient: DietServiceClient
 ): GetDietStatisticsService {
     override fun get(username: String, dietOption: DietDto.DietOption, period: Int): List<DietStatistics> {
+
         val dietHistories = dietServiceClient.getDietHistories(username, period)
 
         val groupByDate = dietHistories.groupBy { it.date }

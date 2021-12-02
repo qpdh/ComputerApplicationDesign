@@ -19,4 +19,4 @@ zuul:
       sensitiveHeaders: Cookie, Set-Cookie
       
 jwt:
-  secretKey: ${JWT_SECRET_KEY:geunyoung_jwt_secret}
+  secretKey: "kimgyun_jwt_secret"

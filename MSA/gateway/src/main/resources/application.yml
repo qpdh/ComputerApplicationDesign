@@ -3,8 +3,10 @@ spring:
     name: "gateway"
   cloud:
     config:
-      uri: ${CONFIG_SERVER_URI:http://localhost:8888}
-      fail-fast: true
+      server:
+        git:
+          uri: https://github.com/kim1387/-spring-cloud-config
+      fail-fast: false
 
 ribbon:
   ReadTimeout: 60000
