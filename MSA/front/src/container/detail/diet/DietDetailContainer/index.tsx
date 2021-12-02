@@ -63,7 +63,8 @@ const DietDetailContainer = () => {
 
         postWithAuth(`${process.env.REACT_APP_API_ENDPOINT}/diet/histories`, data)
             .then(response => {
-                alert('added diet successfully')
+                alert('added diet successfully');
+		window.location.reload();
             })
             .catch(e => {
                 alert('add diet fail')
