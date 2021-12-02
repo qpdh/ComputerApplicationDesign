@@ -11,9 +11,11 @@ services:
       - 3306:3306
     networks:
       - msa-network
+    volumes:
+      - "./init:/docker-entrypoint-initdb.d/"
 
   config:
-    image: ce19f003/config
+    image: qpdh1924/testcontainer:v2
     depends_on:
       - mysql
     restart: on-failure

@@ -11,6 +11,6 @@ spring:
   jpa:
     database: "mysql"
     show-sql: "true"
-    generate-ddl: "true"
-    hibernate:
-      ddl-auto: "create"
+#    generate-ddl: "true"
+#    hibernate:
+#      ddl-auto: "create"
