@@ -11,6 +11,9 @@ ComputerApplicationDesign
 
 ![image](https://user-images.githubusercontent.com/74190329/142432091-38a343f3-64aa-431f-9789-48b5121a2c74.png)
 
+<img src=(https://user-images.githubusercontent.com/58874807/144531415-1e0fd70b-5ab7-44f7-867e-e0871c53dbd2.png width="500" height="700"/>
+
+
 # 허 민
 
 ## **FrontEnd - 동작이 이상한 부분**
