@@ -13,10 +13,11 @@ ComputerApplicationDesign
 
 # system architecture
 
-<img src=https://user-images.githubusercontent.com/58874807/144531415-1e0fd70b-5ab7-44f7-867e-e0871c53dbd2.png width="500" height="700"/>
+<img src=https://user-images.githubusercontent.com/58874807/144533684-40770b0c-2b00-4659-adf6-dca8815e715c.png />
 
 
 # 허 민
+
 
 ## **FrontEnd - 동작이 이상한 부분**
 
