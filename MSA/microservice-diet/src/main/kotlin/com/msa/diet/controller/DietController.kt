@@ -1,12 +1,10 @@
 package com.msa.diet.controller
 
-import com.msa.diet.application.CreateDietHistoryService
-import com.msa.diet.application.DeleteDietHistoryService
-import com.msa.diet.application.FoodSearchService
-import com.msa.diet.application.GetDietHistoryService
+import com.msa.diet.application.*
 import com.msa.diet.domain.DietHistory
 import com.msa.diet.domain.Food
-import com.msa.diet.dto.DietHistoryDto
+import com.msa.diet.dto.DietDto
+import com.netflix.discovery.converters.Auto
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -17,6 +15,7 @@ import javax.validation.Valid
 class DietController(
         @Autowired private val foodSearchService: FoodSearchService,
         @Autowired private val createDietHistoryService: CreateDietHistoryService,
+        @Autowired private val createFoodService:CreateFoodService,
         @Autowired private val deleteDietHistoryService: DeleteDietHistoryService,
         @Autowired private val getDietHistoryService: GetDietHistoryService
 ) {
@@ -41,10 +40,18 @@ class DietController(
     @PostMapping("/histories")
     fun createDietHistory(
             @RequestHeader("username") username: String,
-            @RequestBody @Valid createDietHistoryReq: DietHistoryDto.CreateDietHistoryReq
+            @RequestBody @Valid createDietHistoryReq: DietDto.CreateDietHistoryReq
     ): ResponseEntity<DietHistory> {
         val dietHistory = createDietHistoryService.create(username, createDietHistoryReq)
         return ResponseEntity(dietHistory, HttpStatus.CREATED)
+    }
+
+    @PostMapping("/food")
+    fun createFood(
+            @RequestBody @Valid createFoodReq: DietDto.CreateFoodReq
+    ): ResponseEntity<Food> {
+        val food = createFoodService.create(createFoodReq)
+        return ResponseEntity(food, HttpStatus.CREATED)
     }
 
     @GetMapping("/histories")
