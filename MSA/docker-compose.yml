@@ -24,8 +24,6 @@ services:
       - 8888:8888
     networks:
       - msa-network
-    volumes:
-
 
   registry:
     image: ce19f003/registry
