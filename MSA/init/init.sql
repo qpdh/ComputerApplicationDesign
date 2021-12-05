@@ -2,7 +2,7 @@ create database IF NOT EXISTS test_db;
 
 CREATE TABLE IF NOT EXISTS test_db.diet_history
 (
-    id       bigint(20) auto_increment,
+    id       bigint(20) not null,
     date     date,
     username varchar(255),
     food_id  bigint(20),
@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS test_db.diet_history
 
 CREATE TABLE IF NOT EXISTS test_db.exercise
 (
-    id   bigint(20) auto_increment,
+    id   bigint(20) not null,
     name varchar(255),
     part varchar(255),
     PRIMARY KEY (id)
@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS test_db.exercise
 
 CREATE TABLE IF NOT EXISTS test_db.exercise_history
 (
-    id   bigint(20) auto_increment,
+    id   bigint(20) not null,
     date date,
     rep int(11),
     sets int(11),
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS test_db.exercise_history
 
 CREATE TABLE IF NOT EXISTS test_db.food
 (
-    id   bigint(20) auto_increment,
+    id   bigint(20) not null,
     calorie int(11) NOT NULL,
     carbo_hydrate int(11) NOT NULL,
     fat int(11) NOT NULL,
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS test_db.food
 
 CREATE TABLE IF NOT EXISTS test_db.user
 (
-    id bigint(20) auto_increment,
+    id bigint(20) not null,
     first_name varchar(255),
     last_name varchar(255),
     password varchar(255),

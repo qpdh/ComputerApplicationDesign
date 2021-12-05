@@ -2,7 +2,7 @@ version: '3'
 
 services:
   mysql:
-    image: ce19f003/mysql:5.7
+    image: qpdh1924/mysql
     container_name: mysql-db
     restart: on-failure
     environment:
@@ -10,12 +10,22 @@ services:
     ports:
       - 3306:3306
     networks:
-      - msa-network
+      msa-network:
+          ipv4_address : 172.18.0.2
     volumes:
       - "./init:/docker-entrypoint-initdb.d/"
+    # 30 초마다 웹 서버가 10초 이내에
+    # 기본 페이지를 제공하는 확인
+    # 실패시 3번 재시도 함
+    #
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://192.168.0.3:3000" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
   config:
-    image: qpdh1924/testcontainer:v2
+    image: qpdh1924/config-server
     depends_on:
       - mysql
     restart: on-failure
@@ -23,12 +33,22 @@ services:
       MYSQL_CONNECTION_URI: "jdbc:mysql://mysql:3306/test_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&autoReconnection=true"
       MYSQL_ROOT_PASSWORD: "dkdltm123"
     ports:
-      - 8888:8888
+      - 9888:8888
     networks:
-      - msa-network
+      msa-network:
+        ipv4_address : 172.18.0.3
+    # 30 초마다 웹 서버가 10초 이내에
+    # 기본 페이지를 제공하는 확인
+    # 실패시 3번 재시도 함
+    #
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://192.168.0.3:3000" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
   registry:
-    image: ce19f003/registry
+    image: qpdh1924/registry
     depends_on:
       - config
       - mysql
@@ -36,12 +56,22 @@ services:
     environment:
       CONFIG_SERVER_URI: "http://config:8888"
     ports:
-      - 8761:8761
+      - 9761:8761
     networks:
-      - msa-network
+      msa-network:
+        ipv4_address : 172.18.0.4
+    # 30 초마다 웹 서버가 10초 이내에
+    # 기본 페이지를 제공하는 확인
+    # 실패시 3번 재시도 함
+    #
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://192.168.0.3:3000" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
   gateway:
-    image: ce19f003/gateway
+    image: qpdh1924/gateway
     depends_on:
       - config
       - registry
@@ -55,10 +85,20 @@ services:
     ports:
       - 8080:8080
     networks:
-      - msa-network
+      msa-network:
+        ipv4_address : 172.18.0.5
+    # 30 초마다 웹 서버가 10초 이내에
+    # 기본 페이지를 제공하는 확인
+    # 실패시 3번 재시도 함
+    #
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://192.168.0.3:3000" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
   auth:
-    image: ce19f003/auth
+    image: qpdh1924/auth
     depends_on:
       - config
       - registry
@@ -73,10 +113,20 @@ services:
     ports:
       - 8081:8080
     networks:
-      - msa-network
+      msa-network:
+        ipv4_address : 172.18.0.6
+    # 30 초마다 웹 서버가 10초 이내에
+    # 기본 페이지를 제공하는 확인
+    # 실패시 3번 재시도 함
+    #
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://192.168.0.3:3000" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
   diet:
-    image: ce19f003/diet
+    image: qpdh1924/diet
     depends_on:
       - config
       - registry
@@ -90,10 +140,20 @@ services:
     ports:
       - 8082:8080
     networks:
-      - msa-network
+      msa-network:
+        ipv4_address : 172.18.0.7
+    # 30 초마다 웹 서버가 10초 이내에
+    # 기본 페이지를 제공하는 확인
+    # 실패시 3번 재시도 함
+    #
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://192.168.0.3:3000" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
   exercise:
-    image: ce19f003/exercise
+    image: qpdh1924/exercise
     depends_on:
       - config
       - registry
@@ -107,10 +167,20 @@ services:
     ports:
       - 8083:8080
     networks:
-      - msa-network
+      msa-network:
+        ipv4_address : 172.18.0.8
+    # 30 초마다 웹 서버가 10초 이내에
+    # 기본 페이지를 제공하는 확인
+    # 실패시 3번 재시도 함
+    #
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://192.168.0.3:3000" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
   statistics:
-    image: ce19f003/statistics
+    image: qpdh1924/statistics
     depends_on:
       - config
       - registry
@@ -124,7 +194,17 @@ services:
     ports:
       - 8084:8080
     networks:
-      - msa-network
+      msa-network:
+        ipv4_address : 172.18.0.9
+    # 30 초마다 웹 서버가 10초 이내에
+    # 기본 페이지를 제공하는 확인
+    # 실패시 3번 재시도 함
+    #
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://192.168.0.3:3000" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
 networks:
   msa-network:

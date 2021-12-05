@@ -42,6 +42,7 @@ const ExerciseListContainer = (props: Props) => {
         postWithAuth(`${process.env.REACT_APP_API_ENDPOINT}/exercise/histories`, data)
             .then(response => {
                 alert('added exercise successfully')
+                window.location.reload();
             })
             .catch(e => {
                 alert('add exercise fail')

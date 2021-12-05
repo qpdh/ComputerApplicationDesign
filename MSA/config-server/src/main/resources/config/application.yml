@@ -10,7 +10,7 @@ spring:
 
   jpa:
     database: "mysql"
-    show-sql: "true"
-    generate-ddl: "false"
+    show-sql: "false"
+    generate-ddl: "true"
     hibernate:
       ddl-auto: "none"
