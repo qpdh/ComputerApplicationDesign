@@ -1,6 +1,4 @@
 import subprocess
-import numpy as np
-import pandas as pd
 import os
 import time
 
@@ -22,7 +20,11 @@ while True:
     # Exited
     # unhealthy
     for container in docker_health:
-        if 'Exited' in container[4] or 'unhealthy' in container[4]:
-            os.system('python RunContainer.py '+container[5])
+        if 'Exited' in container[4] :
+            os.system('python RunContainer.py '+container[5]+ ' Exited')
+        elif 'unhealthy' in container[4]:
+            os.system('python RunContainer.py '+container[5]+ ' unhealthy')
+
+
 
     time.sleep(5)
