@@ -1,3 +1,4 @@
+#writeBy 김기현
 # my global config
 global:
   scrape_interval: 15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
@@ -29,27 +30,27 @@ scrape_configs:
       - targets: ["prometheus:9090"]
   - job_name: 'gateway'
     scrape_timeout: 15s
-    metrics_path: '/actuator/metrics/prometheus'
+    metrics_path: '/actuator/prometheus'
     static_configs:
-    - targets: ['gateway:8000']
+    - targets: ['gateway:8080']
   - job_name: 'auth'
     scrape_timeout: 15s
-    metrics_path: '/auth/actuator/metrics/prometheus'
+    metrics_path: '/auth/actuator/prometheus'
     static_configs:
-    - targets: ['gateway:8000']
+    - targets: ['gateway:8080']
   - job_name: 'exercise'
     scrape_timeout: 15s
-    metrics_path: '/exercise/actuator/metrics/prometheus'
+    metrics_path: '/exercise/actuator/prometheus'
     static_configs:
-    - targets: ['gateway:8000']
+    - targets: ['gateway:8080']
   - job_name: 'diet'
     scrape_timeout: 15s
-    metrics_path: '/diet/actuator/metrics/prometheus'
+    metrics_path: '/diet/actuator/prometheus'
     static_configs:
-    - targets: ['gateway:8000']
+    - targets: ['gateway:8080']
   - job_name: 'statistics'
     scrape_timeout: 15s
-    metrics_path: '/statistics/actuator/metrics/prometheus'
+    metrics_path: '/statistics/actuator/prometheus'
     static_configs:
-    - targets: ['gateway:8000']
+    - targets: ['gateway:8080']
 
