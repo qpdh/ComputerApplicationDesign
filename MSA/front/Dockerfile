@@ -1,3 +1,4 @@
+# 기현
 FROM node:14.17.4 as builder
 
 # 작업 폴더를 만들고 npm 설치
@@ -10,6 +11,7 @@ RUN npm install react-scripts@3.4.1 -g --silent
 
 # 소스를 작업폴더로 복사하고 빌드
 COPY src /usr/src/app
+
 RUN npm run build
 
 FROM nginx:latest
