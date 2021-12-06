@@ -2,7 +2,7 @@ version: '3'
 
 services:
   mysql:
-    image: ce19f003/mysql:5.7
+    image: mysql:5.7
     container_name: mysql-db
     restart: on-failure
     environment:
@@ -32,7 +32,7 @@ services:
       - mysql
     restart: on-failure
     environment:
-      CONFIG_SERVER_URI: https://github.com/kim1387/-spring-cloud-config
+      CONFIG_SERVER_URI: "http://config:8888"
     ports:
       - 8761:8761
     networks:
@@ -46,7 +46,7 @@ services:
       - mysql
     restart: on-failure
     environment:
-      CONFIG_SERVER_URI: https://github.com/kim1387/-spring-cloud-config
+      CONFIG_SERVER_URI: "http://config:8888"
       EUREKA_SERVER_URI: "http://registry:8761/eureka"
       MYSQL_CONNECTION_URI: "jdbc:mysql://mysql:3306/test_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&autoReconnection=true"
       MYSQL_ROOT_PASSWORD: "ce19f003"
@@ -63,7 +63,7 @@ services:
       - mysql
     restart: on-failure
     environment:
-      CONFIG_SERVER_URI: https://github.com/kim1387/-spring-cloud-config
+      CONFIG_SERVER_URI: "http://config:8888"
       EUREKA_SERVER_URI: "http://registry:8761/eureka"
       MYSQL_CONNECTION_URI: "jdbc:mysql://mysql:3306/test_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&autoReconnection=true"
       MYSQL_ROOT_PASSWORD: "ce19f003"
@@ -81,7 +81,7 @@ services:
       - mysql
     restart: on-failure
     environment:
-      CONFIG_SERVER_URI: https://github.com/kim1387/-spring-cloud-config
+      CONFIG_SERVER_URI: "http://config:8888"
       EUREKA_SERVER_URI: "http://registry:8761/eureka"
       MYSQL_CONNECTION_URI: "jdbc:mysql://mysql:3306/test_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&autoReconnection=true"
       MYSQL_ROOT_PASSWORD: "ce19f003"
@@ -98,7 +98,7 @@ services:
       - mysql
     restart: on-failure
     environment:
-      CONFIG_SERVER_URI: https://github.com/kim1387/-spring-cloud-config
+      CONFIG_SERVER_URI: "http://config:8888"
       EUREKA_SERVER_URI: "http://registry:8761/eureka"
       MYSQL_CONNECTION_URI: "jdbc:mysql://mysql:3306/test_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&autoReconnection=true"
       MYSQL_ROOT_PASSWORD: "ce19f003"
@@ -115,7 +115,7 @@ services:
       - mysql
     restart: on-failure
     environment:
-      CONFIG_SERVER_URI: https://github.com/kim1387/-spring-cloud-config
+      CONFIG_SERVER_URI: "http://config:8888"
       EUREKA_SERVER_URI: "http://registry:8761/eureka"
       MYSQL_CONNECTION_URI: "jdbc:mysql://mysql:3306/test_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&autoReconnection=true"
       MYSQL_ROOT_PASSWORD: "ce19f003"
@@ -123,7 +123,22 @@ services:
       - 8084:8080
     networks:
       - msa-network
-
+  prometheus:
+    image: prom/prometheus
+    restart: on-failure
+    ports:
+      - 9090:9090
+    networks:
+      - msa-network
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+  grafana:
+    image: grafana/grafana
+    restart: on-failure
+    ports:
+      - 3000:3000
+    networks:
+      - msa-network
 networks:
   msa-network:
     external: true
