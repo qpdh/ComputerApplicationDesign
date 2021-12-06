@@ -41,6 +41,10 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-jdbc")
     implementation("mysql:mysql-connector-java")
     runtimeOnly("com.h2database:h2")
+    //자바 서비스의 상태 정보 수집을 위한 actuator 라이브러리 - 기현
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
+    // promethus - 기현
+    runtimeOnly("io.micrometer:micrometer-registry-prometheus")
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
     }
