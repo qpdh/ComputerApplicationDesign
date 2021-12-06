@@ -3,9 +3,7 @@ spring:
     name: "exercise"
   cloud:
     config:
-      server:
-        git:
-          uri: https://github.com/kim1387/-spring-cloud-config
+      uri: ${CONFIG_SERVER_URI:http://localhost:8888}
       fail-fast: true
 eureka:
   client:
