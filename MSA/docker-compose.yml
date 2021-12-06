@@ -2,11 +2,9 @@ version: '3'
 
 services:
   mysql:
-    image: mysql:5.7
+    image: ce19f003/mysql:5.7
     container_name: mysql-db
     restart: on-failure
-    environment:
-      MYSQL_ROOT_PASSWORD: "ce19f003"
     ports:
       - 3306:3306
     networks:
@@ -44,6 +42,7 @@ services:
       - config
       - registry
       - mysql
+      - prometheus
     restart: on-failure
     environment:
       CONFIG_SERVER_URI: "http://config:8888"
@@ -61,6 +60,7 @@ services:
       - config
       - registry
       - mysql
+      - prometheus
     restart: on-failure
     environment:
       CONFIG_SERVER_URI: "http://config:8888"
@@ -79,6 +79,7 @@ services:
       - config
       - registry
       - mysql
+      - prometheus
     restart: on-failure
     environment:
       CONFIG_SERVER_URI: "http://config:8888"
@@ -96,6 +97,7 @@ services:
       - config
       - registry
       - mysql
+      - prometheus
     restart: on-failure
     environment:
       CONFIG_SERVER_URI: "http://config:8888"
@@ -113,6 +115,7 @@ services:
       - config
       - registry
       - mysql
+      - prometheus
     restart: on-failure
     environment:
       CONFIG_SERVER_URI: "http://config:8888"

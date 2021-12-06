@@ -7,4 +7,5 @@ docker push ce19f003/auth:latest
 docker push ce19f003/exercise:latest
 docker push ce19f003/diet:latest
 docker push ce19f003/statistics:latest
+docker push ce19f003/mysql:latest
 
