@@ -19,5 +19,10 @@ export const ExerciseListViewMode = {
     FORM: "2"
 };
 
+export const FoodViewMode = {
+    LIST: "1",
+    FORM: "2"
+};
+
 // @ts-ignore
 export const TOKEN_KEY = 'access_token';

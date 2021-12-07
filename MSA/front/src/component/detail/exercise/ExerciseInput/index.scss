@@ -14,23 +14,24 @@
       font-size: 2rem;
       margin-bottom: 2rem;
     }
+
     .add-exercise-form {
-      .selected-exercise {
-        font-size: 1.5rem;
-        margin-bottom: 1.5rem;
-      }
+      font-size: 1.5rem;
+      margin: 10px;
+    }
       .add-exercise-input-group {
         display: flex;
         flex-direction: row;
         margin-bottom: 2rem;
         .add-exercise-input {
-          margin-left: 1rem;
-          margin-right: 1rem;
+          margin:10px
         }
       }
       .add-exercise-button-container {
         .add-exercise-button {
           float: right;
+          margin:10px;
+          margin-top:10px
         }
         margin-bottom: 3rem;
       }
@@ -40,4 +41,3 @@
       text-align: center;
     }
   }
-}

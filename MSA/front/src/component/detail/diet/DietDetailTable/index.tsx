@@ -10,6 +10,7 @@ interface Props {
     selectedFoodId: number | undefined
     onSelectFood: (e: ChangeEvent<HTMLSelectElement>) => void
     onClickAddFood: () => void
+    onClickAddDiet: () => void
 }
 
 const DietDetailTable = (props: Props) => {
@@ -63,6 +64,13 @@ const DietDetailTable = (props: Props) => {
                     color={"success"}
                 >
                     Add Food
+                </Button>
+                <Button
+                    onClick={props.onClickAddDiet}
+                    className={"add-custom-food-button"}
+                    color={"success"}
+                >
+                    Add Diet
                 </Button>
             </div>
         </div>

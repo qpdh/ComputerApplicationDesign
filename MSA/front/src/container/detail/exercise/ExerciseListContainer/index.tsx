@@ -114,6 +114,7 @@ const ExerciseListContainer = (props: Props) => {
                                onClickBackButton={props.handleClickBackButton}
                                name={exerciseCreateInputState.name}
                                onChangeInput={handleChangeInput}
+                               part={props.selectedPart}
                                />
             }
         </div>
