@@ -13,8 +13,23 @@ eureka:
       enabled: true
 server:
   port: 0
+
 management:
+  # prometheus로 circuit breaker상태 체크를 위한 설정 - 기현
+  metrics:
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+        resilience4j.circuitbreaker.calls: true
+  health:
+    circuitbreakers:
+      enabled: true
+
   endpoints:
+    health:
+      show-details: always
+      # prometheus로 circuit breaker상태 체크를 위한 설정 - end
     web:
       exposure:
+        # micrometer를 통한 각종 metrics와 health, prometheus 모니터링 정보를 위한 endpoint 개방 - 기현
         include: ["env", "refresh","health","httptrace","info", "info", "metrics", "prometheus"]
