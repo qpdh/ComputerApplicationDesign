@@ -8,12 +8,14 @@ import {Exercise} from "../../../../type";
 interface Props {
     exercises: Array<Exercise>
     onClickExercise: (exercise: Exercise) => void
+    onClickPart:(part:string)=>void
     onClickAddExercise: () => void
     onClickBackButton: () => void
     selectedExercise: Exercise | undefined
     weight: number
     reps: number
     sets: number
+    part:string
     onChangeInput: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
@@ -24,7 +26,7 @@ const ExerciseList = (props: Props) => {
                 <thead className={"exercise-list-table-head"}>
                     <tr>
                         <th className={"table-head-content"}>
-                            <div>NAME</div>
+                            <div onClick={()=>props.onClickPart(props.part)}>{props.part}</div>
                             <div
                                 className={"back-button"}
                                 onClick={props.onClickBackButton}
