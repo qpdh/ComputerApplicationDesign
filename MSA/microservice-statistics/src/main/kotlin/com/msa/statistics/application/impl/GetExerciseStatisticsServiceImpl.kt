@@ -1,21 +1,34 @@
 package com.msa.statistics.application.impl
 
-import com.fasterxml.jackson.databind.util.ArrayBuilders
 import com.msa.statistics.application.GetExerciseStatisticsService
 import com.msa.statistics.dto.ExerciseDto
 import com.msa.statistics.dto.ExerciseStatistics
 import com.msa.statistics.feign.ExerciseServiceClient
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.cloud.client.circuitbreaker.CircuitBreaker
+import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory
 import org.springframework.stereotype.Service
-import java.lang.StringBuilder
 import java.time.LocalDate
 
 @Service
 class GetExerciseStatisticsServiceImpl(
-        @Autowired private val exerciseServiceClient: ExerciseServiceClient
+        @Autowired private val exerciseServiceClient: ExerciseServiceClient,
+        @Autowired private val circuitBreakerFactory: CircuitBreakerFactory<*, *>
+
 ): GetExerciseStatisticsService {
     override fun get(username: String, part: ExerciseDto.ExercisePart, period: Int): List<ExerciseStatistics> {
-        val exerciseHistories = exerciseServiceClient.getExerciseHistories(username, part, period)
+
+        //original code
+        //val exerciseHistories = exerciseServiceClient.getExerciseHistories(username, part, period)
+        /**
+         * apply circuitbreaker code
+         * @author 김기현
+         */
+        val circuitBreaker: CircuitBreaker = circuitBreakerFactory.create("circuitbreaker")
+        val exerciseHistories = circuitBreaker.run(
+            { exerciseServiceClient.getExerciseHistories(username, part, period) }
+        ) { throwable:Throwable? -> listOf<ExerciseDto.ExerciseHistory>() }
+
 
         val from = LocalDate.now().minusMonths(period.toLong())
         val to = LocalDate.now()
