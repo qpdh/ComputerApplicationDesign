@@ -33,19 +33,24 @@ ComputerApplicationDesign
 
 # 김기현
 
-## 모니터링 툴
-
-1. 모니터링 툴 prometheus + Grafana 
-    1. 오픈소스 → 파일 입출력 → 파일 읽기
-2. 모니터링 툴 시각화
-
-## 협업 환경 구성
-
-1. Docker Image Push
-2. 이미지 빌드 시, 더미 SQL 데이터 추가
-
-### 메세지 큐 사용 kafaka나 rabbitmq
--> 시나리오 3으로도 사용할 수도
+## 1. kafka 연결을 통한 db query요청 장애 대응(transcarion 유지), 클러스터화
+    - kafka
+    - zookeeper
+## 2. 각 마이크로 서비스의 api,서버의 자원 상태를 체크하는 log 수집해서 prometheus로 전송
+    - spring micrometer - 각 마이크로 서비스의 api 상태, 자원상태 체크 로그 수집
+    - spring actutar
+## 3. micro service circuitbreaker 기능 추가
+    - resilience4j
+    - prometheus를 통한 모니터링 가능 설정
+## 4. nginx이미지위에 front코드 올려서 container화 dockerfile 작성
+    - nginx
+    - react
+    bug-fix -> react-script module이 버전이 너무 낮아서 version up
+## 5. docker-compose
+    front container, prometheus.yml 수정
+## 6. spring api 추가, 의존성 관리
+    exercise-service - Controller: 운동 추가 하는 api 추가
+    gateway-service - user health check api(user's ip, port etc..)
 
 # 김동현
 
