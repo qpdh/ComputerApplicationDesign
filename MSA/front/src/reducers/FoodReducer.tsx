@@ -3,7 +3,7 @@ export interface FoodInputState {
     calorie: number
     fat: number
     protein:number
-    carbo_hydrate:number
+    carboHydrate:number
 }
 
 enum FoodInputEnum {
@@ -11,7 +11,7 @@ enum FoodInputEnum {
     CALORIE = 'calorie',
     FAT = 'fat',
     PROTEIN='protein',
-    CARBO_HYDRATE='carbo_hydrate'
+    CARBOHYDRATE='carboHydrate'
 }
 
 export interface FoodInputAction {
@@ -30,6 +30,6 @@ export const FoodInputInitialState: FoodInputState = {
     name: "",
     protein: 0,
     calorie: 0,
-    carbo_hydrate:0,
+    carboHydrate:0,
     fat:0
 };

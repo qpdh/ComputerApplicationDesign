@@ -88,7 +88,7 @@ const DietDetailContainer = () => {
             protein:foodInputState.protein,
             calorie:foodInputState.calorie,
             fat:foodInputState.fat,
-            carbo_hydrate:foodInputState.carbo_hydrate
+            carboHydrate:foodInputState.carboHydrate
         };
 
         postWithAuth(`${process.env.REACT_APP_API_ENDPOINT}/diet/food`, data)
@@ -136,7 +136,7 @@ const DietDetailContainer = () => {
                                    protein={foodInputState.protein}
                                    calorie={foodInputState.calorie}
                                    fat={foodInputState.fat}
-                                   carbo_hydrate={foodInputState.carbo_hydrate}
+                                   carboHydrate={foodInputState.carboHydrate}
                                    onChangeInput={handleChangeInput}
                         />
                 }

@@ -10,7 +10,7 @@ interface Props {
     protein:number
     calorie:number
     fat:number
-    carbo_hydrate:number
+    carboHydrate:number
     onChangeInput: (e: ChangeEvent<HTMLInputElement>) => void
 
 }
@@ -30,28 +30,28 @@ const FoodInput = (props: Props) => {
                     name={"calorie"}
                     className={"add-exercise-input"}
                     placeholder={"calorie"}
-                    value={props.calorie}
+                    // value={props.calorie}
                     onChange={props.onChangeInput}
                 />
                 <Input
                     name={"fat"}
                     className={"add-exercise-input"}
                     placeholder={"fat"}
-                    value={props.fat}
+                    // value={props.fat}
                     onChange={props.onChangeInput}
                 />
                 <Input
                     name={"protein"}
                     className={"add-exercise-input"}
                     placeholder={"protein"}
-                    value={props.protein}
+                    // value={props.protein}
                     onChange={props.onChangeInput}
                 />
                 <Input
-                    name={"carbo_hydrate"}
+                    name={"carboHydrate"}
                     className={"add-exercise-input"}
-                    placeholder={"carbo_hydrate"}
-                    value={props.carbo_hydrate}
+                    placeholder={"carboHydrate"}
+                    // value={props.carbo_hydrate}
                     onChange={props.onChangeInput}
                 />
             </div>
