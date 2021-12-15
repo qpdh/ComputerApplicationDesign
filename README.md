@@ -18,67 +18,64 @@ ComputerApplicationDesign
 
 # 허 민
 
-
 ## **FrontEnd - 동작이 이상한 부분**
-
-1. **Exercise** → db 테이블 내 exercise가 있는데도 선택이 안됨,
-2. **Diet →** 음식 선택 후에도 테이블에 변화가 없음. → 새로고침 처리
+### 1. 프론트엔드 서비스 분석
+### 2. 기존 리액트 레거시 코드 DB 이슈 핸들링
+### 3. 기존 리액트 컴포넌트 렌더링 이슈 핸들링
+### 4. 사용자 기반 컴포넌트 UI 문서화
 
 # 송경진
 
 ## **FrontEnd - 추가부분**
 
-1. 사용자 입력으로 음식 추가 페이지
-2. 사용자 입력으로 운동 추가 페이지
+### 1. 운동 데이터 타입 생성 및 컨트롤러에 운동 데이터 생성 함수 구현
+### 2. 식단 데이터 타입 생성 및 컨트롤러에 식단 데이터 생성 함수 구현
+### 3. 식단, 운동 추가 페이지 구현
 
 # 김기현
 
-## 모니터링 툴
-
-1. 모니터링 툴 prometheus + Grafana 
-    1. 오픈소스 → 파일 입출력 → 파일 읽기
-2. 모니터링 툴 시각화
-
-## 협업 환경 구성
-
-1. Docker Image Push
-2. 이미지 빌드 시, 더미 SQL 데이터 추가
-
-### 메세지 큐 사용 kafaka나 rabbitmq
--> 시나리오 3으로도 사용할 수도
+### 1. kafka 연결을 통한 db query요청 장애 대응(transcarion 유지), 클러스터화
+    - kafka
+    - zookeeper
+### 2. 각 마이크로 서비스의 api,서버의 자원 상태를 체크하는 log 수집해서 prometheus로 전송
+    - spring micrometer - 각 마이크로 서비스의 api 상태, 자원상태 체크 로그 수집
+    - spring actutar
+### 3. micro service circuitbreaker 기능 추가
+    - resilience4j
+    - prometheus를 통한 모니터링 가능 설정
+### 4. nginx이미지위에 front코드 올려서 container화 dockerfile 작성
+    - nginx
+    - react
+    bug-fix -> react-script module이 버전이 너무 낮아서 version up
+### 5. docker-compose
+    front container, prometheus.yml 수정
+### 6. spring api 추가, 의존성 관리
+    exercise-service - Controller: 운동 추가 하는 api 추가
+    gateway-service - user health check api(user's ip, port etc..)
+### Git 관리
 
 # 김동현
 
-서버(컨테이너) 브로커 역할
-
-Mosquitto → MQTT(어플)이 서버 구독 → 메시지 수령
-
-## SQL 더미데이터 생성
-
-## 시나리오 구성
-
-1. **시나리오 1** - 동적 자원 할당
-    1. 자원 점유율 확인할 수 있는가?
-    2. 자원을 추가적으로 할당할 수 있는가?
-    3. 모니터링 모듈 살펴보기
-2. **시나리오 2** - 결함 포용
--> 꺼졌을 때 다시 시작할 수 있는가?
--> 헬스 모듈 체크
-3. **시나리오 3** - (제안하는 서비스)
-    1. 시나리오 1,2의 상황 발생으로 처리 상황을 메시지큐로 슈퍼바이저에게 전달
-    2. **메세지 큐 사용** kafaka나 rabbitmq
-    -> 시나리오 3으로도 사용할 수도
+### 1. Notion 관리
+### 2. Git 관리
+### 3. docker-compose
+```
+healthcheck curl - 각 컨테이너마다 태그 설정
+network - curl을 위한 컨테이너 ip설정
+init SQL - 데이터베이스 뼈대 생성, 더미 데이터 추가
+```
+### 4. 결함포옹 모듈
+```
+HealthCheck.py
+RunContainer.py
+```
 
 # 최혜민
 
-## 설계안 초안 구성 ppt (10페이지 이내) → 12/3(목)까지
+### 설계안 초안 구성 ppt 및 발표
+### 1. nginx-prometheus-exporter를 이용해 Nginx의 커넥션 정보에 대한 메트릭 수집
+### 2. Grafana, Prometheus를 이용해 Nginx 웹 서버를 모니터링할 수 있는 대시보드 구축
+### 3. CollectD, collectd-exporter를 이용해 메트릭 수집 및 노출, 메트릭 데이터 스크랩핑
+### 4. Grafana, Prometheus를 이용해 시스템 메트릭 모니터링을 위한 Grafana 대시보드 구축
 
-1. 팀소개
-2. 전체 구조도(사용자 영역+운영 영역) + 설명
 
-1. 사용자 영역 구조도 + 설명
-2. 운영 영역 구조도 + 설명
-3. 프로젝트 추진 일정
-4. 역할 
-
-## Git 관리
