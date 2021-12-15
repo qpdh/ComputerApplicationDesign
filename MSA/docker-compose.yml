@@ -144,10 +144,10 @@ services:
       - msa-network
 
   front:
-    image: ce19f003/front
+    image: ce19f003/front:latest
     restart: on-failure
     ports:
-      - 8080:80
+      - 8000:80
     networks:
       - msa-network
 
