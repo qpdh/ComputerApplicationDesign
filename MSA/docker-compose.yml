@@ -143,13 +143,13 @@ services:
     networks:
       - msa-network
 
-  front:
-    image: ce19f003/front
-    restart: on-failure
-    ports:
-      - 8080:80
-    networks:
-      - msa-network
+#  front:
+#    image: ce19f003/front
+#    restart: on-failure
+#    ports:
+#      - 8080:80
+#    networks:
+#      - msa-network
 
 networks:
   msa-network:
