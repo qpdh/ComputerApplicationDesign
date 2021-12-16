@@ -60,6 +60,8 @@ const ExerciseListContainer = (props: Props) => {
             })
     };
 
+
+    //운동 추가 함수
     const handleClickCreateExercise = () => {
         const data = {
             'part':props.selectedPart,
@@ -78,6 +80,7 @@ const ExerciseListContainer = (props: Props) => {
             })
     };
 
+    //파트 클릭 시 운동 추가 입력창 보여주는 함수
     const handleClickPart=()=>{
         setViewMode(ExerciseListViewMode.FORM)
     }

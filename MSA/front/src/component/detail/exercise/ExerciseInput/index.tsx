@@ -4,7 +4,7 @@ import './index.scss';
 import {IoIosArrowBack} from "react-icons/io";
 import {Exercise} from "../../../../type";
 
-
+//운동 추가 페이지 컴포넌트
 interface Props {
     onClickAddExercise: () => void
     onClickBackButton: () => void

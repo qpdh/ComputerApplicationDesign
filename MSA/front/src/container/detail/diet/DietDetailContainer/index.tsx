@@ -59,6 +59,7 @@ const DietDetailContainer = () => {
         console.log(selectedFoodId)
     };
 
+    //음식 추가 버튼 누르면 음식 추가 입력창 보여주는 함수
     const handleClickAddFood=()=>{
         setViewMode(FoodViewMode.FORM)
 
@@ -82,6 +83,7 @@ const DietDetailContainer = () => {
             })
     };
 
+    //음식 추가하는 함수
     const handleClickCreateFood = () => {
         const data = {
             name:foodInputState.name,

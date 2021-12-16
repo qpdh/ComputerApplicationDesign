@@ -8,7 +8,7 @@ class DietDto {
             val date: LocalDate
     )
 
-    data class CreateFoodReq(
+    data class CreateFoodReq( //음식 추가 dto
             var foodId:Long,
             var name: String,
             var calorie: Int,

@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 @Service
-class CreateExerciseServiceImpl(
+class CreateExerciseServiceImpl( //운동 추가 서비스 구현
         @Autowired private val exerciseRepository: ExerciseRepository
 ): CreateExerciseService {
     override fun createExercise(createExerciseReq: ExerciseDto.CreateExerciseReq): Exercise {

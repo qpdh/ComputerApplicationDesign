@@ -63,7 +63,7 @@ class ExerciseController(
     }
 
     @PostMapping("/exercises")
-    fun createExercise(
+    fun createExercise( //운동 추가 컨트롤러 구현
             @RequestBody @Valid createExerciseReq: ExerciseDto.CreateExerciseReq
     ): ResponseEntity<Exercise> {
         val exercise = createExerciseService.createExercise(createExerciseReq)

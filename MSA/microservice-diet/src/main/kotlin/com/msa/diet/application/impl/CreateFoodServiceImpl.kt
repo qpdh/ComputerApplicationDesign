@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 @Service
-class CreateFoodServiceImpl(
+class CreateFoodServiceImpl( //음식 추가 service 구현
         @Autowired private val foodRepository: FoodRepository
 ): CreateFoodService {
     override fun create(createDietReq: DietDto.CreateFoodReq): Food {

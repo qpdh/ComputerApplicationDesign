@@ -1,3 +1,5 @@
+//운동 추가 reducer
+
 export interface FoodInputState {
     name: string
     calorie: number

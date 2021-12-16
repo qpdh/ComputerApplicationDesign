@@ -1,3 +1,5 @@
+//음식 추가 reducer
+
 export interface ExerciseCreateInputState {
     name: string
 }

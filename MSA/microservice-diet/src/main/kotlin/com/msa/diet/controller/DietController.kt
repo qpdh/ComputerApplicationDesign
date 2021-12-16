@@ -47,7 +47,7 @@ class DietController(
     }
 
     @PostMapping("/food")
-    fun createFood(
+    fun createFood( //음식 추가 컨트롤러
             @RequestBody @Valid createFoodReq: DietDto.CreateFoodReq
     ): ResponseEntity<Food> {
         val food = createFoodService.create(createFoodReq)

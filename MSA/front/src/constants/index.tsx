@@ -14,6 +14,7 @@ export const ExerciseDetailViewMode = {
     DETAIL: "detail"
 };
 
+//운동 추가 및 음식 추가 뷰모드
 export const ExerciseListViewMode = {
     LIST: "1",
     FORM: "2"

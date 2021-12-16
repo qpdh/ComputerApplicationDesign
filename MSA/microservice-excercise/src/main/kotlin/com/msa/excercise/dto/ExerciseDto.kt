@@ -12,7 +12,7 @@ class ExerciseDto {
             var date: LocalDate
     )
 
-    data class CreateExerciseReq(
+    data class CreateExerciseReq( //운동 추가 dto
             var exerciseId: Long,
             var part: ExercisePart,
             var name: String

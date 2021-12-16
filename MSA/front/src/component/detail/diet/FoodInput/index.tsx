@@ -4,6 +4,7 @@ import {DietDetail, Food, TotalDietDetail} from "../../../../type";
 import './index.scss'
 import internal from "stream";
 
+//음식 추가 input 컴포넌트
 interface Props {
     onClickAddFood: () => void
     name:string
