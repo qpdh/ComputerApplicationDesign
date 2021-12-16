@@ -62,6 +62,14 @@ class ExerciseController(
         return ResponseEntity(history, HttpStatus.CREATED)
     }
 
+    @PostMapping("/exercises")
+    fun createExercise( //운동 추가 컨트롤러 구현
+            @RequestBody @Valid createExerciseReq: ExerciseDto.CreateExerciseReq
+    ): ResponseEntity<Exercise> {
+        val exercise = createExerciseService.createExercise(createExerciseReq)
+        return ResponseEntity(exercise, HttpStatus.CREATED)
+    }
+
     @GetMapping("/histories")
     fun getHistories(
             @RequestHeader("username") username: String,
