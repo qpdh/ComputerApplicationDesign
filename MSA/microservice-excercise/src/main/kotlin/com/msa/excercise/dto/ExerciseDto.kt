@@ -11,9 +11,10 @@ class ExerciseDto {
             var weight: Int,
             var date: LocalDate
     )
+
     data class CreateExerciseReq(
-        var id: Long,
-        var name: String,
-        var part: ExercisePart
+            var exerciseId: Long,
+            var part: ExercisePart,
+            var name: String
     )
 }

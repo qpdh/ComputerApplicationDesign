@@ -1,0 +1,43 @@
+.exercise-list-container {
+  .exercise-list-table-head {
+    .table-head-content {
+      display: flex;
+      flex-direction: row;
+      .back-button {
+        cursor: pointer;
+        margin-left: auto;
+      }
+    }
+  }
+  .add-exercise-form-container {
+    .add-exercise-title {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .add-exercise-form {
+      font-size: 1.5rem;
+      margin: 10px;
+    }
+      .add-exercise-input-group {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 2rem;
+        .add-exercise-input {
+          margin:10px
+        }
+      }
+      .add-exercise-button-container {
+        .add-exercise-button {
+          float: right;
+          margin:10px;
+          margin-top:10px
+        }
+        margin-bottom: 3rem;
+      }
+    }
+    .add-exercise-message {
+      font-size: 1.5rem;
+      text-align: center;
+    }
+  }

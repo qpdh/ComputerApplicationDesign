@@ -1,13 +1,18 @@
-import React, {ChangeEvent, FC, useEffect, useState} from 'react';
+import React, {ChangeEvent, FC, useEffect, useReducer, useState} from 'react';
 import './index.scss';
 import DietDetailTable from "../../../../component/detail/diet/DietDetailTable";
 import {DietDetail, Food} from "../../../../type";
 import {getFormatDate, getWithAuth, postWithAuth} from "../../../../utils";
+import {ExerciseListViewMode, FoodViewMode} from "../../../../constants";
+import {FoodInputReducer, FoodInputInitialState} from "../../../../reducers/FoodReducer";
+import FoodInput from "../../../../component/detail/diet/FoodInput";
 
 const DietDetailContainer = () => {
+    const [viewMode, setViewMode] = useState(FoodViewMode.LIST);
     const [foods, setFoods] = useState<Array<Food>>();
     const [dailyDiet, setDailyDiet] = useState<Array<DietDetail>>();
     const [selectedFoodId, setSelectedFoodId] = useState<number>();
+    const [foodInputState, dispatchFoodInput] = useReducer(FoodInputReducer, FoodInputInitialState);
 
     useEffect(() => {
         getWithAuth(`${process.env.REACT_APP_API_ENDPOINT}/diet?q=`)
@@ -54,7 +59,12 @@ const DietDetailContainer = () => {
         console.log(selectedFoodId)
     };
 
-    const handleClickAddFood = () => {
+    const handleClickAddFood=()=>{
+        setViewMode(FoodViewMode.FORM)
+
+    }
+
+    const handleClickAddDiet = () => {
         const today = new Date();
         const data = {
             foodId: selectedFoodId,
@@ -72,22 +82,69 @@ const DietDetailContainer = () => {
             })
     };
 
+    const handleClickCreateFood = () => {
+        const data = {
+            name:foodInputState.name,
+            protein:foodInputState.protein,
+            calorie:foodInputState.calorie,
+            fat:foodInputState.fat,
+            carboHydrate:foodInputState.carboHydrate
+        };
+
+        postWithAuth(`${process.env.REACT_APP_API_ENDPOINT}/diet/food`, data)
+            .then(response => {
+                alert('added diet successfully');
+                window.location.reload();
+            })
+            .catch(e => {
+                alert('add diet fail')
+                console.log(e)
+            })
+    };
+
+    const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
+        const action = {
+            type: e.target.name,
+            value: e.target.value
+        };
+
+        // @ts-ignore
+        dispatchFoodInput(action)
+    };
+
+    // @ts-ignore
+    // @ts-ignore
     return (
         <div className={"diet-detail-container"}>
             <div className={"diet-title"}>
                 DIET
             </div>
             <div>
-                <DietDetailTable
-                    dailyDiet={dailyDiet}
-                    totalDietDetail={getTotalDietDetail()}
-                    foods={foods}
-                    selectedFoodId={selectedFoodId}
-                    onSelectFood={handleSelectFood}
-                    onClickAddFood={handleClickAddFood}
-                />
+                {
+                    viewMode===FoodViewMode.LIST?
+                        <DietDetailTable
+                            dailyDiet={dailyDiet}
+                            totalDietDetail={getTotalDietDetail()}
+                            foods={foods}
+                            selectedFoodId={selectedFoodId}
+                            onSelectFood={handleSelectFood}
+                            onClickAddFood={handleClickAddFood}
+                            onClickAddDiet={handleClickAddDiet}
+                        />:
+                        <FoodInput onClickAddFood={handleClickCreateFood}
+                                   name={foodInputState.name}
+                                   protein={foodInputState.protein}
+                                   calorie={foodInputState.calorie}
+                                   fat={foodInputState.fat}
+                                   carboHydrate={foodInputState.carboHydrate}
+                                   onChangeInput={handleChangeInput}
+                        />
+                }
+
+
             </div>
         </div>
+
     )
 };
 
