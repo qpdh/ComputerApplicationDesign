@@ -1,0 +1,11 @@
+#writeBy 최혜민
+groups:
+- name: alert_rules
+  rules:
+  - alert: SSL_TLS_Cert_Expiry
+    expr: x509_cert_expiry{job="SSL/TLS Certs"} <= 2592000
+    for: 1m
+    labels:
+      severity: critical
+    annotations:
+      summary: SSL/TLS Certificate Expiry
