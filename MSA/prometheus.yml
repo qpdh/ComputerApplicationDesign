@@ -10,8 +10,8 @@ alerting:
   alertmanagers:
     - static_configs:
         - targets:
-            - localhost:9093
-          # - alertmanager:9093
+#             - localhost:9093
+          - alertmanager:9093
 rule_files:
     - "alert_rules.yml"
 

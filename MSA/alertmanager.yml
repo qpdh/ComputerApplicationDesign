@@ -1,4 +1,5 @@
 #writeBy 최혜민
+
 global:
   resolve_timeout: 5m
 
@@ -6,14 +7,42 @@ route:
   group_by: ['alertname']
   group_wait: 10s
   group_interval: 10s
-  repeat_interval: 24h
+  repeat_interval: 10s
   receiver: 'email'
 receivers:
 - name: 'email'
   email_configs:
-  - to: 'pavi03@kpu.ac.kr'
-    from: 'email_id@gmail.com'
+  - send_resolved: true
+    to: 'dropmoon3523@gmail.com'
+    from: 'pavi3523@gmail.com'
     smarthost: smtp.gmail.com:587
-    auth_username: 'email_id@gmail.com'
-    auth_identity: 'email_id@gmail.com'
-    auth_password: 'password'
+    auth_username: 'pavi3523@gmail.com'
+    auth_identity: 'pavi3523@gmail.com'
+    auth_password: 'kpuchm8645!'
+inhibit_rules:
+  - source_match:
+      severity: 'critical'
+    target_match:
+      severity: 'warning'
+    equal: ['alertname', 'dev', 'instance']
+
+# global:
+#   resolve_timeout: 5m
+#
+# route:
+#   group_by: ['alertname']
+# #   group_wait: 10s
+# #   group_interval: 10s
+# #   repeat_interval: 24h
+#   receiver: 'email'
+#
+# receivers:
+# - name: 'email'
+#   email_configs:
+#   - send_resolved: true
+#     to: 'pavi03@kpu.ac.kr'
+#     from: 'pavi03@naver.com'
+#     smarthost: smtp.gmail.com:587
+#     auth_username: 'pavi03@naver.com'
+#     auth_identity: 'pavi03@naver.com'
+#     auth_password: 'cchocolate'
