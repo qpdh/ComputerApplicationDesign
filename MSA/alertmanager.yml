@@ -1,48 +1,14 @@
 #writeBy 최혜민
-
 global:
-  resolve_timeout: 5m
+  slack_api_url: 'slack web hook'
 
 route:
-  group_by: ['alertname']
-  group_wait: 10s
-  group_interval: 10s
-  repeat_interval: 10s
-  receiver: 'email'
+  receiver: 'slack-notifications'
+  repeat_interval: 2m
 receivers:
-- name: 'email'
-  email_configs:
-  - send_resolved: true
-    to: 'dropmoon3523@gmail.com'
-    from: 'pavi3523@gmail.com'
-    smarthost: smtp.gmail.com:587
-    auth_username: 'pavi3523@gmail.com'
-    auth_identity: 'pavi3523@gmail.com'
-    auth_password: 'asdfqwer'
-inhibit_rules:
-  - source_match:
-      severity: 'critical'
-    target_match:
-      severity: 'warning'
-    equal: ['alertname', 'dev', 'instance']
-
-# global:
-#   resolve_timeout: 5m
-#
-# route:
-#   group_by: ['alertname']
-# #   group_wait: 10s
-# #   group_interval: 10s
-# #   repeat_interval: 24h
-#   receiver: 'email'
-#
-# receivers:
-# - name: 'email'
-#   email_configs:
-#   - send_resolved: true
-#     to: 'pavi03@kpu.ac.kr'
-#     from: 'pavi03@naver.com'
-#     smarthost: smtp.gmail.com:587
-#     auth_username: 'pavi03@naver.com'
-#     auth_identity: 'pavi03@naver.com'
-#     auth_password: 'cchocolate'
+  - name: 'slack-notifications'
+    slack_configs:
+    - channel: '#_monitoring'
+      send_resolved: true
+      title: "{{ range .Alerts }}{{ .Annotations.summary }}\n{{ end }}"
+      text: "{{ range .Alerts }}{{ .Annotations.description }}\n{{ end }}"

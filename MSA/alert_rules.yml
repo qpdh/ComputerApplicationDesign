@@ -28,9 +28,7 @@ groups:
     annotations:
       summary: "Host memory under memory pressure (instance {{ $labels.instance }})"
       description: "The node is under heavy memory pressure. High rate of major page faults\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
-  # Please add ignored mountpoints in node_exporter parameters like
-  # "--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|run)($|/)".
-  # Same rule using "node_filesystem_free_bytes" will fire when disk fills for non-root users.
+
   - alert: HostOutOfDiskSpace
     expr: (node_filesystem_avail_bytes * 100) / node_filesystem_size_bytes < 10 and ON (instance, device, mountpoint) node_filesystem_readonly == 0
     for: 2m
@@ -66,28 +64,3 @@ groups:
     annotations:
       summary: Prometheus not connected to alertmanager (instance {{ $labels.instance }})
       description: "Prometheus cannot connect the alertmanager\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
-
-# - InstanceDown
-#
-# - HostOutOfMemory
-#
-# - HostMemoryUnderMemoryPressure
-#
-# - HostOutOfDiskSpace
-#
-# - HostHighCpuLoad
-
-
-
-
-
-# groups:
-# - name: alert_rules
-#   rules:
-#   - alert: SSL_TLS_Cert_Expiry
-#     expr: x509_cert_expiry{job="SSL/TLS Certs"} <= 2592000
-#     for: 1m
-#     labels:
-#       severity: critical
-#     annotations:
-#       summary: SSL/TLS Certificate Expiry

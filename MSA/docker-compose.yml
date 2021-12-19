@@ -135,7 +135,7 @@ services:
       - msa-network
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
-      - ./alert_rules.yml:/etc/prometheus/alert_rules.yml
+      - ./alert_rules.yml:/etc/prometheus/alert_rules.yml #writeBy 최혜민
   grafana:
     image: grafana/grafana
     restart: on-failure
@@ -144,7 +144,7 @@ services:
     networks:
       - msa-network
 
-  alertmanager:
+  alertmanager: #writeBy 최혜민
     image: prom/alertmanager
     user: root
     ports:

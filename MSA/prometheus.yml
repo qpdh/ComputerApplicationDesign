@@ -11,9 +11,9 @@ alerting:
     - static_configs:
         - targets:
 #             - localhost:9093
-          - alertmanager:9093
+          - alertmanager:9093 #writeBy 최혜민
 rule_files:
-    - "alert_rules.yml"
+    - "alert_rules.yml" #writeBy 최혜민
 
 # A scrape configuration containing exactly one endpoint to scrape:
 # Here it's Prometheus itself.
