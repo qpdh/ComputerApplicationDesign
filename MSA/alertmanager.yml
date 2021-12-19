@@ -18,7 +18,7 @@ receivers:
     smarthost: smtp.gmail.com:587
     auth_username: 'pavi3523@gmail.com'
     auth_identity: 'pavi3523@gmail.com'
-    auth_password: 'kpuchm8645!'
+    auth_password: 'asdfqwer'
 inhibit_rules:
   - source_match:
       severity: 'critical'
