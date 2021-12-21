@@ -1,5 +1,10 @@
 version: '3'
-
+##################################################
+# healthcheck 안에 있는 주소는 자신의 주소로 바꿔야 함 #
+# 30 초마다 웹 서버가 10초 이내에                    #
+# 기본 페이지를 제공하는 확인                        #
+# 실패시 3번 재시도 함                              #
+##################################################
 services:
   mysql:
     image: ce19f003/mysql:5.7
@@ -9,6 +14,14 @@ services:
       - 3306:3306
     networks:
       - msa-network
+    volumes:
+      - "./init:/docker-entrypoint-initdb.d/"
+
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://192.168.0.3:3000" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
   config:
     image: ce19f003/config
@@ -22,6 +35,11 @@ services:
       - 8888:8888
     networks:
       - msa-network
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://192.168.0.3:3000" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
   registry:
     image: ce19f003/registry
@@ -35,6 +53,11 @@ services:
       - 8761:8761
     networks:
       - msa-network
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://192.168.0.3:3000" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
   gateway:
     image: ce19f003/gateway
@@ -53,6 +76,11 @@ services:
       - 8080:8080
     networks:
       - msa-network
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://192.168.0.3:3000" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
   auth:
     image: ce19f003/auth
@@ -72,6 +100,11 @@ services:
       - 8081:8080
     networks:
       - msa-network
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://192.168.0.3:3000" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
   diet:
     image: ce19f003/diet
@@ -90,6 +123,11 @@ services:
       - 8082:8080
     networks:
       - msa-network
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://192.168.0.3:3000" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
   exercise:
     image: ce19f003/exercise
@@ -108,6 +146,11 @@ services:
       - 8083:8080
     networks:
       - msa-network
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://192.168.0.3:3000" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
   statistics:
     image: ce19f003/statistics
@@ -126,6 +169,12 @@ services:
       - 8084:8080
     networks:
       - msa-network
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://192.168.0.3:3000" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
   prometheus:
     image: prom/prometheus
     restart: on-failure
@@ -135,6 +184,12 @@ services:
       - msa-network
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://192.168.0.3:3000" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
   grafana:
     image: grafana/grafana
     restart: on-failure
@@ -142,6 +197,11 @@ services:
       - 3000:3000
     networks:
       - msa-network
+  healthcheck:
+    test: [ "CMD", "curl", "-f", "http://192.168.0.3:3000" ]
+    interval: 30s
+    timeout: 10s
+    retries: 3
 
 #  front:
 #    image: ce19f003/front
