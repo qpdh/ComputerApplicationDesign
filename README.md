@@ -72,12 +72,12 @@ RunContainer.py
 
 # 최혜민
 
-### 설계안 초안 구성 ppt 및 발표
-### 1. 시나리오 1
+### 1. 설계안 초안 구성 ppt 및 발표
+### 2. 시나리오 1
 ```
 DynamicAllocation.py
 ```
-### 2. Alertmanager to Slack
+### 3. Alertmanager to Slack
 ```
 alert_rules.yml
 alertmanager.yml
