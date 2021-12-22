@@ -185,6 +185,7 @@ services:
       - msa-network
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./alert_rules.yml:/etc/prometheus/alert_rules.yml #writeBy 최혜민
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://192.168.0.3:3000" ]
       interval: 30s
@@ -203,6 +204,17 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
+
+
+  alertmanager: #writeBy 최혜민
+    image: prom/alertmanager
+    user: root
+    ports:
+    - "9093:9093"
+    volumes:
+    - ./alertmanager.yml:/etc/alertmanager/alertmanager.yml
+    networks:
+    - msa-network
 
 #  front:
 #    image: ce19f003/front
