@@ -73,9 +73,14 @@ RunContainer.py
 # 최혜민
 
 ### 설계안 초안 구성 ppt 및 발표
-### 1. nginx-prometheus-exporter를 이용해 Nginx의 커넥션 정보에 대한 메트릭 수집
-### 2. Grafana, Prometheus를 이용해 Nginx 웹 서버를 모니터링할 수 있는 대시보드 구축
-### 3. CollectD, collectd-exporter를 이용해 메트릭 수집 및 노출, 메트릭 데이터 스크랩핑
-### 4. Grafana, Prometheus를 이용해 시스템 메트릭 모니터링을 위한 Grafana 대시보드 구축
+### 1. 시나리오 1
+```
+DynamicAllocation.py
+```
+### 2. Alertmanager to Slack
+```
+alert_rules.yml
+alertmanager.yml
+```
 
 
