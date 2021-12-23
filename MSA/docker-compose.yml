@@ -8,7 +8,7 @@ version: '3'
 ##################################################
 services:
   mysql:
-    image: ce19f003/mysql:5.7
+    image: ce19f003/mysql
     container_name: mysql-db
     restart: on-failure
     ports:
@@ -19,13 +19,14 @@ services:
       - "./init:/docker-entrypoint-initdb.d/"
 
     healthcheck:
-      test: [ "CMD", "curl", "-f", "http://192.168.0.3:3000" ]
+      test: [ "CMD", "curl", "-f", "http://172.30.1.33:8000" ]
       interval: 30s
       timeout: 10s
       retries: 3
 
   config:
     image: ce19f003/config
+    container_name: config
     depends_on:
       - mysql
     restart: on-failure
@@ -37,13 +38,15 @@ services:
     networks:
       - msa-network
     healthcheck:
-      test: [ "CMD", "curl", "-f", "http://192.168.0.3:3000" ]
+      test: [ "CMD", "curl", "-f", "http://172.30.1.33:8000" ]
       interval: 30s
       timeout: 10s
       retries: 3
 
   registry:
     image: ce19f003/registry
+    container_name: registry
+
     depends_on:
       - config
       - mysql
@@ -55,18 +58,18 @@ services:
     networks:
       - msa-network
     healthcheck:
-      test: [ "CMD", "curl", "-f", "http://192.168.0.3:3000" ]
+      test: [ "CMD", "curl", "-f", "http://172.30.1.33:8000" ]
       interval: 30s
       timeout: 10s
       retries: 3
 
   gateway:
     image: ce19f003/gateway
+    container_name: gateway
     depends_on:
       - config
       - registry
       - mysql
-      - prometheus
     restart: on-failure
     environment:
       CONFIG_SERVER_URI: "http://config:8888"
@@ -78,18 +81,18 @@ services:
     networks:
       - msa-network
     healthcheck:
-      test: [ "CMD", "curl", "-f", "http://192.168.0.3:3000" ]
+      test: [ "CMD", "curl", "-f", "http://172.30.1.33:8000" ]
       interval: 30s
       timeout: 10s
       retries: 3
 
   auth:
     image: ce19f003/auth
+    container_name: auth
     depends_on:
       - config
       - registry
       - mysql
-      - prometheus
     restart: on-failure
     environment:
       CONFIG_SERVER_URI: "http://config:8888"
@@ -102,18 +105,18 @@ services:
     networks:
       - msa-network
     healthcheck:
-      test: [ "CMD", "curl", "-f", "http://192.168.0.3:3000" ]
+      test: [ "CMD", "curl", "-f", "http://172.30.1.33:8000" ]
       interval: 30s
       timeout: 10s
       retries: 3
 
   diet:
     image: ce19f003/diet
+    container_name: diet
     depends_on:
       - config
       - registry
       - mysql
-      - prometheus
     restart: on-failure
     environment:
       CONFIG_SERVER_URI: "http://config:8888"
@@ -125,18 +128,18 @@ services:
     networks:
       - msa-network
     healthcheck:
-      test: [ "CMD", "curl", "-f", "http://192.168.0.3:3000" ]
+      test: [ "CMD", "curl", "-f", "http://172.30.1.33:8000" ]
       interval: 30s
       timeout: 10s
       retries: 3
 
   exercise:
     image: ce19f003/exercise
+    container_name: exercise
     depends_on:
       - config
       - registry
       - mysql
-      - prometheus
     restart: on-failure
     environment:
       CONFIG_SERVER_URI: "http://config:8888"
@@ -148,18 +151,19 @@ services:
     networks:
       - msa-network
     healthcheck:
-      test: [ "CMD", "curl", "-f", "http://192.168.0.3:3000" ]
+      test: [ "CMD", "curl", "-f", "http://172.30.1.33:8000" ]
       interval: 30s
       timeout: 10s
       retries: 3
 
   statistics:
-    image: ce19f003/statistics
+    image: ce19f003/statistics_no_cb
+    # image: ce19f003/statistics
+    container_name: statistics
     depends_on:
       - config
       - registry
       - mysql
-      - prometheus
     restart: on-failure
     environment:
       CONFIG_SERVER_URI: "http://config:8888"
@@ -171,13 +175,14 @@ services:
     networks:
       - msa-network
     healthcheck:
-      test: [ "CMD", "curl", "-f", "http://192.168.0.3:3000" ]
+      test: [ "CMD", "curl", "-f", "http://172.30.1.33:8000" ]
       interval: 30s
       timeout: 10s
       retries: 3
 
   prometheus:
     image: prom/prometheus
+    container_name: prometheus
     restart: on-failure
     ports:
       - 9090:9090
@@ -186,31 +191,33 @@ services:
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
     healthcheck:
-      test: [ "CMD", "curl", "-f", "http://192.168.0.3:3000" ]
+      test: [ "CMD", "curl", "-f", "http://172.30.1.33:8000" ]
       interval: 30s
       timeout: 10s
       retries: 3
 
   grafana:
     image: grafana/grafana
+    container_name: grafana
     restart: on-failure
     ports:
       - 3000:3000
     networks:
       - msa-network
     healthcheck:
-      test: [ "CMD", "curl", "-f", "http://192.168.0.3:3000" ]
+      test: [ "CMD", "curl", "-f", "http://172.30.1.33:8000" ]
       interval: 30s
       timeout: 10s
       retries: 3
 
-#  front:
-#    image: ce19f003/front
-#    restart: on-failure
-#    ports:
-#      - 8080:80
-#    networks:
-#      - msa-network
+  front:
+    image: ce19f003/front
+    container_name: front
+    restart: on-failure
+    ports:
+      - 8000:80
+    networks:
+      - msa-network
 
 networks:
   msa-network:
