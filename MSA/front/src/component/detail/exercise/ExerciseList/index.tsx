@@ -26,7 +26,7 @@ const ExerciseList = (props: Props) => {
                 <thead className={"exercise-list-table-head"}>
                     <tr>
                         <th className={"table-head-content"}>
-                            //파트 클릭 시 운동 추가 입력 페이지로
+                            {/*//파트 클릭 시 운동 추가 입력 페이지로*/}
                             <div onClick={()=>props.onClickPart(props.part)}>{props.part}</div>
                             <div
                                 className={"back-button"}

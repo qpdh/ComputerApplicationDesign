@@ -54,7 +54,7 @@ services:
     environment:
       CONFIG_SERVER_URI: "http://config:8888"
     ports:
-      - 8761:8761
+      - 8762:8762
     networks:
       - msa-network
     healthcheck:
@@ -87,7 +87,7 @@ services:
       retries: 3
 
   auth:
-    image: ce19f003/auth
+    image: ce19f003/auth:latest
     container_name: auth
     depends_on:
       - config
@@ -157,8 +157,8 @@ services:
       retries: 3
 
   statistics:
-    image: ce19f003/statistics_no_cb
-    # image: ce19f003/statistics
+    #image: ce19f003/statistics_no_cb
+    image: ce19f003/statistics
     container_name: statistics
     depends_on:
       - config
@@ -222,14 +222,14 @@ services:
     networks:
     - msa-network
 
-  front:
-    image: ce19f003/front
-    container_name: front
-    restart: on-failure
-    ports:
-      - 8000:80
-    networks:
-      - msa-network
+#  front:
+#    image: ce19f003/front:latest
+#    container_name: front
+#    restart: on-failure
+#    ports:
+#      - 8000:80
+#    networks:
+#      - msa-network
 
 networks:
   msa-network:

@@ -65,7 +65,7 @@ const DietDetailTable = (props: Props) => {
                 >
                     Add Food
                 </Button>
-                //음식 추가 버튼
+                {/*음식 추가 버튼*/}
                 <Button
                     onClick={props.onClickAddDiet}
                     className={"add-custom-food-button"}
