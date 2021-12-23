@@ -10,25 +10,12 @@ zuul:
       serviceId: exercise
       sensitiveHeaders: Cookie, Set-Cookie
     diet:
-      path: /diet/actuator/**
+      path: /diet/**
       serviceId: diet
       sensitiveHeaders: Cookie, Set-Cookie
     statistics:
-      path: /statistics/actuator/**
+      path: /statistics/**
       serviceId: statistics
       sensitiveHeaders: Cookie, Set-Cookie
-# actuator의 url은 허용 기현
-    auth-actuator:
-      path: /auth/actuator/**
-      serviceId: auth
-    exercise-actuator:
-      path: /exercise/actuator/**
-      serviceId: exercise
-    diet-actuator:
-      path: /diet/actuator/**
-      serviceId: diet
-    statistics-actuator:
-      path: /statistics/actuator/**
-      serviceId: statistics
 jwt:
   secretKey: "kimgyun_jwt_secret"
