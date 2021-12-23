@@ -7,4 +7,6 @@ docker image build -t ce19f003/diet ./microservice-diet
 docker image build -t ce19f003/exercise ./microservice-excercise
 docker image build -t ce19f003/statistics ./microservice-statistics
 docker image build -t ce19f003/gateway ./gateway
+docker image build -t ce19f003/front ./front
 
+docker image prune -f
