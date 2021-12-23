@@ -6,8 +6,12 @@ spring:
       uri: ${CONFIG_SERVER_URI:http://localhost:8888}
       fail-fast: true
 
-ribbon:
-  ReadTimeout: 60000
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: false
 
 management:
   endpoints:
