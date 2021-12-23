@@ -20,11 +20,13 @@ while True:
     # Exited
     # unhealthy
     for container in docker_health:
-        if 'Exited' in container[4] :
-            os.system('python RunContainer.py '+container[5]+ ' Exited')
+        if 'Exited' in container[4]:
+            os.system('docker start ' + container[5])
         elif 'unhealthy' in container[4]:
-            os.system('python RunContainer.py '+container[5]+ ' unhealthy')
-
-
+            os.system('docker restart' + container[5])
+        # if 'Exited' in container[4]:
+        #     os.system('python RunContainer.py ' + container[5] + ' Exited')
+        # elif 'unhealthy' in container[4]:
+        #     os.system('python RunContainer.py ' + containe
 
     time.sleep(5)
