@@ -44,11 +44,13 @@ const AuthContainer = (props: Props) => {
         //@ts-ignore
         dispatchRegister(action)
     };
-
+    // 기현
     const handleClickLoginButton = async () => {
         try {
             const response = await axios.post(`${process.env.REACT_APP_API_ENDPOINT}/auth/login`, loginState)
-            const {data} = response;
+            let {data} = response;
+            data = `{${data.split('{')[1]}`
+            data = JSON.parse(data)
             sessionStorage.setItem(TOKEN_KEY, data.token)
             alert('로그인 성공')
             props.history.push('/main')

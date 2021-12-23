@@ -1,6 +1,6 @@
 #writeBy 최혜민
 global:
-  slack_api_url: 'your web hook link'
+  slack_api_url: 'https://hooks.slack.com/services/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'
 
 route:
   receiver: 'slack-notifications'

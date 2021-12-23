@@ -9,7 +9,7 @@ COPY package.json /usr/src/app/package.json
 
 # 소스를 작업폴더로 복사하고 빌드
 COPY src /usr/src/app/src
-
+COPY .env.* /usr/src/app/
 COPY public /usr/src/app/public
 
 COPY node_modules /usr/src/app/node_modlues
