@@ -41,18 +41,21 @@ class UserController(
     }
 
     @PostMapping("/register")
+    @Timed(value = "user.register", longTask = true) // 기현
     fun register(@RequestBody @Valid signUpReq: SignUpDto.SignUpReq): ResponseEntity<User> {
         val user = signUpService.signUp(signUpReq)
         return ResponseEntity(user, HttpStatus.CREATED)
     }
 
     @PostMapping("/login")
+    @Timed(value = "user.login", longTask = true)// 기현
     fun login(@RequestBody @Valid signInReq: SignInDto.SignInReq): ResponseEntity<SignInDto.SignInResult> {
         val signInResult = signInService.signIn(signInReq)
         return ResponseEntity(signInResult, HttpStatus.OK)
     }
 
     @GetMapping("/my_page")
+    @Timed(value = "user.my_page", longTask = true)// 기현
     fun myPage(@RequestHeader("username") username: String): ResponseEntity<MyPageDto.MyPageResult> {
         val userInfo = myInfoService.myInfo(username)
 
