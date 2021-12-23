@@ -7,7 +7,7 @@ import javax.persistence.*
 @Entity
 @JsonIgnoreProperties(value = ["password"])
 data class User(
-        @Id @GeneratedValue
+        @Id @GeneratedValue(strategy = GenerationType.AUTO)
         var id: Long? = null,
 
         @Column(name="username", unique = true, length = 200)

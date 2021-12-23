@@ -5,7 +5,7 @@ import javax.persistence.*
 
 @Entity
 data class DietHistory(
-        @Id @GeneratedValue
+        @Id @GeneratedValue(strategy = GenerationType.AUTO)
         var id: Long? = null,
         @ManyToOne
         var food: Food,
