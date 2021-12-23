@@ -25,10 +25,10 @@ class GetDietStatisticsServiceImpl(
         // original code
         //val dietHistories =dietServiceClient.getDietHistories(username, period)
         // default data - for example
-        var defaultDietHistoryList :List<DietDto.DietHistory> =
+        val defaultDietHistoryList :List<DietDto.DietHistory> =
             listOf(DietDto.DietHistory(100,
                 DietDto.Food(100,"circuitbreak지점 닭발",203,4,16,13),
-                "김기현", LocalDate.now()))
+                "user", LocalDate.now().minusDays(3)))
 
         val circuitBreaker: CircuitBreaker = circuitBreakerFactory.create("circuitbreaker")
 
