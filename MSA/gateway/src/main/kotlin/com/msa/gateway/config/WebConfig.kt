@@ -15,7 +15,7 @@ class WebConfig : WebMvcConfigurer {
 
     override fun addCorsMappings(registry: CorsRegistry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:3000", "$deployHost:$deployPort", deployHost)
+                .allowedOrigins("http://localhost:8000","http://localhost:3001","http://localhost:3000", "$deployHost:$deployPort", deployHost)
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
                 .allowedHeaders("authorization", "content-type")
                 .exposedHeaders("authorization")
