@@ -34,7 +34,7 @@ ComputerApplicationDesign
 
 # 김기현
 
-### 1. kafka 연결을 통한 db query요청 장애 대응(transcarion 유지), 클러스터화
+### 1.(미완료) kafka 연결을 통한 db query요청 장애 대응(transcarion 유지), 클러스터화
     - kafka
     - zookeeper
 ### 2. 각 마이크로 서비스의 api,서버의 자원 상태를 체크하는 log 수집해서 prometheus로 전송
